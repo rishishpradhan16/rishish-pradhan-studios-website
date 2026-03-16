@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rishish Pradhan Studios | Indie Android Games & Puzzle Experiences</title>
+    <script>
+      // Robust fix for "Cannot set property fetch of #<Window> which has only a getter"
+      (function() {
+        try {
+          var originalFetch = window.fetch;
+          var currentFetch = originalFetch;
+          
+          // Try to redefine the property with both getter and setter
+          Object.defineProperty(window, 'fetch', {
+            get: function() {
+              return currentFetch;
+            },
+            set: function(value) {
+              // Allow setting but don't throw if it fails
+              currentFetch = value;
+            },
+            configurable: true,
+            enumerable: true
+          });
+        } catch (e) {
+          // If redefinition fails (e.g. not configurable), 
+          // we at least tried. Some environments are very restrictive.
+          console.warn('Fetch polyfill protection could not be fully applied:', e);
+        }
+      })();
+    </script>
+    <meta name="description" content="Portfolio of Rishish Pradhan Studios, an indie Android game developer focused on puzzle games and creative storytelling platforms like NineLogic and KahaaniVerse." />
+    <meta name="keywords" content="mobile apps, indie developer, Android games, puzzle games, Sudoku parity, storytelling platform, Rishish Pradhan, NineLogic, KahaaniVerse" />
+    <meta name="author" content="Rishish Pradhan" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Rishish Pradhan Studios | Indie Android Games" />
+    <meta property="og:description" content="Crafting unique, challenging, and storytelling experiences for mobile." />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:title" content="Rishish Pradhan Studios | Indie Android Games" />
+    <meta property="twitter:description" content="Crafting unique, challenging, and storytelling experiences for mobile." />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
