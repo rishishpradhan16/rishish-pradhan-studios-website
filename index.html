@@ -23,12 +23,21 @@
             configurable: true,
             enumerable: true
           });
-        } catch (e) {
-          // If redefinition fails (e.g. not configurable), 
-          // we at least tried. Some environments are very restrictive.
           console.warn('Fetch polyfill protection could not be fully applied:', e);
         }
       })();
+
+      // SPA redirect decoder for 404 fallbacks (e.g. /?/privacy -> /privacy)
+      (function(l) {
+        if (l.search && l.search[1] === '/' ) {
+          var decoded = l.search.slice(1).split('&').map(function(s) { 
+            return s.replace(/~and~/g, '&')
+          }).join('?');
+          window.history.replaceState(null, null,
+              l.pathname.slice(0, -1) + decoded + l.hash
+          );
+        }
+      }(window.location));
     </script>
     <meta name="description" content="Portfolio of Rishish Pradhan Studios, an indie Android game developer focused on puzzle games and creative storytelling platforms like NineLogic and KahaaniVerse." />
     <meta name="keywords" content="mobile apps, indie developer, Android games, puzzle games, Sudoku parity, storytelling platform, Rishish Pradhan, NineLogic, KahaaniVerse" />
